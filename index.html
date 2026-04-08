@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Drill 2</title>
+    <style>
+        body {
+            background: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-container {
+            background: #ca0a07c1;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 32px 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px black;
+            text-align: center;
+        }
+
+        input {
+            padding: 8px 12px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            width: 80%;
+            font-size: 1em;
+            margin-top: 6px;
+            }
+
+        .btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 28px;
+            font-size: 10px;
+            font-style: bold;
+            margin: 18px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #edebeb;
+        }
+
+        #result {
+            margin-top: 22px;
+            padding: 14px;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #ca0a07c1;
+            font-weight: bold;
+            min-height: 32px;
+        }
+    </style>
+</head>
+<body>
+   <div class="main-container">
+        <h2>Heat Index Checker</h2>
+        <h2>Please Enter Temprature & Humidity</h2>
+
+        <div class="inputtags">
+            <h3>Degree in °C</h3>
+            <input type="number" id="tempInput" placeholder="Input degree value">
+
+            <h3>Humidity in %</h3>
+            <input type="number" id="humidInput" placeholder="Input percentage value">
+        </div>
+        <button class="btn" onclick="showIndex()">Check Index</button>
+        <h3 id="result"></h3>
+    </div>
+    <script>
+        function showIndex() {
+            var tempInput = parseFloat(document.getElementById("tempInput").value);
+            var humidInput = parseFloat(document.getElementById("humidInput").value);
+            var Rangecalc = tempInput + (0.33 * humidInput) - 4;
+            var Index = Rangecalc;
+            var status;
+
+            switch (true) {
+                case (Index <= 27):
+                    status = "Comfortable/Cool";
+                    break;
+                case (Index <= 28 >= 32):
+                    status = "Warm";
+                    break;
+                case (Index <= 33 >= 37):
+                    status = "Hot";
+                    break;
+                case (Index <= 38 >= 41):
+                    status = "VERY HOT / CAUTION";
+                    break;
+                case (Index >= 42):
+                    status = "EXTREME HEAT / DANGER";
+                    break;
+                default:
+                    alert("Invalid Input! kulit!");
+                    break;
+        }
+        document.getElementById("result").innerHTML = status;
+    }
+    </script>
+</body>
+</html>
